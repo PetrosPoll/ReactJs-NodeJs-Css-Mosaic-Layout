@@ -1,0 +1,233 @@
+$bg-color: #191919;
+$button-and-hover-color: #4a52ff;
+
+* {
+  color: white;
+  font-family: Arial;
+  font-weight: 400;
+}
+
+body {
+  margin: 0px;
+  background-color: $bg-color;
+}
+
+.upload-error {
+  color: red;
+}
+
+.grid-item-parent-div {
+  position: relative;
+  height: fit-content;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $button-and-hover-color;
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: 1;
+    border-radius: 4px;
+  }
+
+  &:hover {
+    .grid-item-description {
+      display: block;
+    }
+    &::before {
+      opacity: 1;
+    }
+    .grid-item-title,
+    .grid-item-arrow,
+    .grid-item-description {
+      z-index: 2;
+    }
+  }
+}
+
+.grid-item-arrow {
+  position: absolute;
+  top: 90%;
+  left: 90%;
+  margin-left: 15px;
+  font-size: 12px;
+}
+
+.grid-item-title {
+  position: absolute;
+  top: 0;
+  margin-left: 15px;
+  font-size: 17px;
+}
+
+.grid-item-description {
+  position: absolute;
+  top: 50px;
+  margin-left: 15px;
+  font-size: 13px;
+  display: none;
+}
+
+.grid-item-parent-div img {
+  max-width: 100%;
+  display: block;
+  border-radius: 4px;
+  width: 100%;
+  opacity: 70%;
+  height: auto;
+}
+
+.dynamic-mosaic-layout-grid-container {
+  display: grid;
+  grid-template-areas:
+    "title"
+    "one"
+    "two"
+    "three"
+    "four"
+    "five"
+    "six"
+    "seven"
+    "buttonUpload";
+  gap: 6px;
+  padding: 50px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.button-upload {
+  grid-area: buttonUpload;
+
+  button {
+    background-color: $button-and-hover-color;
+    border: 0px;
+    border-radius: 25px;
+    font-size: 15px;
+    padding: 8px 20px 5px 20px;
+  }
+
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.page-title {
+  grid-area: title;
+  font-size: 22px;
+}
+//First image
+.grid-item-0 {
+  grid-area: one;
+}
+// Second image
+.grid-item-1 {
+  grid-area: two;
+}
+// Third image
+.grid-item-2 {
+  grid-area: three;
+}
+// Fourth image
+.grid-item-3 {
+  grid-area: four;
+}
+// Fifth image
+.grid-item-4 {
+  grid-area: five;
+}
+// Sixth image
+.grid-item-5 {
+  grid-area: six;
+}
+// Seventh image
+.grid-item-6 {
+  grid-area: seven;
+}
+
+// Responsiveness on different screen views
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .dynamic-mosaic-layout-grid-container {
+    padding: 50px;
+  }
+
+  .grid-item-title {
+    font-size: 27px;
+  }
+
+  .grid-item-description {
+    top: 80px;
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  
+  .dynamic-mosaic-layout-grid-container {
+    gap: 0.5rem;
+  }
+
+  .grid-item-title {
+    font-size: 30px;
+  }
+
+  .grid-item-description {
+    font-size: 23px;
+    top: 60px;
+  }
+}
+
+@media (min-width: 991px) {
+
+  .grid-item-parent-div {
+    height: unset;
+  }
+
+  .grid-item-parent-div img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .dynamic-mosaic-layout-grid-container {
+    grid-template-areas:
+      "title title title three three ."
+      "one one one three three ."
+      "seven seven two two . four"
+      "six six six five five buttonUpload";
+    gap: 1.5rem;
+  }
+
+  .grid-item-title {
+    margin-left: 15px;
+    font-size: 20px;
+  }
+
+  .grid-item-description {
+    font-size: 16px;
+    top: 60px;
+  }
+
+  .grid-item-arrow {
+    left: 80%;
+  }
+}
+
+@media (min-width: 1300px) {
+
+  .dynamic-mosaic-layout-grid-container {
+    grid-template-areas:
+      "title title title three three ."
+      "one one one three three ."
+      "seven seven two two five four"
+      ". six six six five buttonUpload";
+    gap: 1.5rem;
+  }
+  
+  .grid-item-arrow {
+    left: 90%;
+  }
+}
